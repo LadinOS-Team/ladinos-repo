@@ -1,0 +1,9 @@
+Origin: LadinOS
+Label: LadinOS
+Suite: jammy
+Codename: jammy
+Version: 1.0
+Architectures: amd64 i386
+Components: main
+Description: LadinOS Public Repository (Based on Ubuntu 22.04 LTS)
+SignWith: no  # 先关签名，避免报错（后续再加）
