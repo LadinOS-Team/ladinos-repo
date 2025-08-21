@@ -1,0 +1,39 @@
+Origin: LadinOS
+Label: LadinOS
+Suite: Ankang
+Codename: Ankang
+Version: 1.0
+Date: Thu, 21 Aug 2025 07:45:51 UTC
+Architectures: amd64 i386 arm64
+Components: main
+Description: LadinOS Public Repository (Based on Ubuntu 22.04 LTS)
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
+ 022c351c9c0bb985ebb1139f6605001b 163 main/binary-amd64/Release
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-i386/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-i386/Packages.gz
+ d6c24fd7b98bcbb6bab98e50f34a0c84 162 main/binary-i386/Release
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-arm64/Packages.gz
+ 752abd70dad304522e78c5606bf07731 163 main/binary-arm64/Release
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
+ 8afc8ed8f94dd05940c7e295f7f70a5bf3c8d72a 163 main/binary-amd64/Release
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-i386/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-i386/Packages.gz
+ fba1866de5f1369fa5a93fa81681d214bb2a996e 162 main/binary-i386/Release
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-arm64/Packages.gz
+ e0f03a851cb040e8e3249e2f559f0aef01f770eb 163 main/binary-arm64/Release
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
+ 0e826a225d00618f5d40c06debef8b7cf4fde85e58f945f07f37876e594d58db 163 main/binary-amd64/Release
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-i386/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-i386/Packages.gz
+ a35dd6f4c7bdb884ada357e16b9146fe24c1d8716ac0a7f9c15ffe8872a2df7a 162 main/binary-i386/Release
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-arm64/Packages.gz
+ 9f32591fdd58f6401d7308d9bffef8db77c06b02402ca826a60330f97e27de94 163 main/binary-arm64/Release
