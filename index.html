@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LadinOS mirrors - deb.saladin510-orangeyouhome-erath.online</title>
+    <title>LadinOS mirrors (GitHub Pages) - deb.saladin510-orangeyouhome-erath.online</title>
     <style>
         body {
             font-family: "Arial", sans-serif;
@@ -68,78 +68,76 @@
         li {
             margin: 0.5rem 0;
         }
+        .github-note {
+            background-color: #edf2ff;
+            border-left: 4px solid #4299e1;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
-    <h1>LadinOS mirrors - deb.saladin510-orangeyouhome-erath.online</h1>
+    <h1>LadinOS mirrors (GitHub Pages) - deb.saladin510-orangeyouhome-erath.online</h1>
 
-    <p>This is <code>http://deb.saladin510-orangeyouhome-erath.online</code>. This service provides official mirrors for the following LadinOS archive repositories, optimized for global access via CDN:</p>
+    <div class="github-note">
+        <strong>Hosting Note:</strong> This LadinOS software source is hosted on <strong>GitHub Pages</strong> — all package files, indexes, and metadata are served as static assets via GitHub’s global CDN, ensuring fast access across regions.
+    </div>
+
+    <p>This is <code>http://deb.saladin510-orangeyouhome-erath.online</code>, the official GitHub Pages-backed mirror for LadinOS. It hosts the following static archive repositories for SAPT (LadinOS’s package manager):</p>
     <ul>
-        <li><code>/ladinos/</code> (Main LadinOS repository)</li>
-        <li><code>/ladinos-debug/</code> (Debug symbol packages)</li>
-        <li><code>/ladinos-experimental/</code> (Experimental development packages)</li>
+        <li><code>/ladinos/</code> — Main repository (stable packages for daily use)</li>
+        <li><code>/ladinos-debug/</code> — Debug symbol packages (for development/troubleshooting)</li>
+        <li><code>/ladinos-experimental/</code> — Experimental repository (unstable, pre-release features)</li>
     </ul>
 
-    <p>The domain <code>deb.saladin510-orangeyouhome-erath.online</code> does not host packages directly. Instead, it uses **DNS SRV records** to let <code>SAPT</code> (LadinOS’s official package manager) — available in LadinOS 1.0 and later — automatically discover the nearest, fastest CDN mirror. This ensures optimal download speeds across different regions.</p>
+    <p>Unlike traditional mirrors, this service leverages GitHub Pages’ built-in CDN to distribute files. No additional SRV records are needed — SAPT directly accesses the static assets via the domain above, with GitHub handling global speed optimization automatically.</p>
 
 
     <div class="section">
-        <h2>Using with SAPT (via SRV Records)</h2>
-        <p>For LadinOS 1.0+ (with SAPT supporting SRV records), add the following lines to your <code>sources.list</code> (default path: <code>/etc/sapt/sources.list</code>). This configuration auto-selects the best mirror:</p>
+        <h2>Configuring SAPT (GitHub Pages Source)</h2>
+        <p>For all LadinOS versions (1.0+), add the following lines to your <code>sources.list</code> (default path: <code>/etc/sapt/sources.list</code>). This points SAPT to the GitHub Pages-hosted mirror:</p>
         <pre>sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos stable main
 sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-debug stable-debug main
 sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-experimental unstable main</pre>
-        <p>After updating <code>sources.list</code>, refresh SAPT’s package index with: <code>sudo sapt update</code></p>
+        <p>After saving the file, refresh SAPT’s package index to apply changes:</p>
+        <pre>sudo sapt update</pre>
+        <p>You can then install packages normally (e.g., <code>sudo sapt install [package-name]</code>).</p>
     </div>
 
 
     <div class="section">
-        <h2>SRV Record Details</h2>
-        <p>As of <strong>2025-09-13</strong>, the DNS SRV record for <code>deb.saladin510-orangeyouhome-erath.online</code> is:</p>
-        <pre>_http._tcp.deb.saladin510-orangeyouhome-erath.online.    IN      SRV     10 1 80 cdn.ladinos.mirror.cdn-provider.net.</pre>
-        <p>This record tells SAPT to prioritize CDN endpoints (priority: 10, weight: 1) on port 80, ensuring reliable, fast connections.</p>
-    </div>
-
-
-    <div class="section">
-        <h2>Direct CDN Access (Avoid Redirects)</h2>
-        <p>If you use an older SAPT version (that does not support SRV records) or a network with restricted DNS functionality, requests to <code>deb.saladin510-orangeyouhome-erath.online</code> will be **HTTP 302 redirected** to a CDN instance. To skip redirects, use the CDN-aligned domain directly in <code>sources.list</code>:</p>
-        <pre>sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos stable main
-sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-debug stable-debug main
-sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-experimental unstable main</pre>
-        <p>This configuration works identically to the SRV-based setup but bypasses DNS record resolution for legacy environments.</p>
-    </div>
-
-
-    <div class="section">
-        <h2>Repository Type Overview</h2>
+        <h2>Repository Type Details</h2>
         <table>
             <thead>
                 <tr>
                     <th>Repository Path</th>
                     <th>Target Users</th>
-                    <th>Stability</th>
+                    <th>Stability Level</th>
                     <th>Security Updates</th>
+                    <th>GitHub Pages CDN</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><code>/ladinos/</code></td>
                     <td>Most users, production systems</td>
-                    <td>✅ High (fully tested)</td>
+                    <td>✅ High (fully tested builds)</td>
                     <td>✅ Weekly security patches</td>
+                    <td>Global, low-latency access</td>
                 </tr>
                 <tr>
                     <td><code>/ladinos-debug/</code></td>
-                    <td>Developers, troubleshooting</td>
-                    <td>✅ High (matches stable)</td>
+                    <td>Developers, bug troubleshooting</td>
+                    <td>✅ High (matches main repo)</td>
                     <td>✅ Aligned with <code>/ladinos/</code></td>
+                    <td>Same CDN as main repo</td>
                 </tr>
                 <tr>
                     <td><code>/ladinos-experimental/</code></td>
-                    <td>Developers, early testers</td>
+                    <td>Early testers, developers</td>
                     <td>❌ Low (unverified features)</td>
                     <td>❌ No official security updates</td>
+                    <td>Global CDN, but unstable content</td>
                 </tr>
             </tbody>
         </table>
@@ -147,14 +145,25 @@ sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-experimental 
 
 
     <div class="section">
-        <h2>Notes</h2>
+        <h2>GitHub Pages-Specific Notes</h2>
         <ul>
-            <li>All packages in <code>/ladinos/</code> and <code>/ladinos-debug/</code> are signed with LadinOS’s official GPG key. SAPT verifies signatures by default to prevent tampering.</li>
-            <li><code>/ladinos-experimental/</code> is for testing only — do not use it on critical systems, as it may break functionality or expose security risks.</li>
-            <li>If you encounter mirror issues, check LadinOS’s official forums or update SAPT to the latest version: <code>sudo sapt upgrade sapt</code></li>
+            <li><strong>Static Asset Limitation:</strong> GitHub Pages serves static files (e.g., <code>.deb</code>, <code>Packages.gz</code>) — SAPT handles package index parsing and installation locally.</li>
+            <li><strong>Update Delay:</strong> When new packages are added to the source, GitHub Pages may take 1–2 minutes to sync changes globally. If you don’t see updates immediately, wait a few minutes and re-run <code>sudo sapt update</code>.</li>
+            <li><strong>Privacy & Security:</strong> All packages in <code>/ladinos/</code> and <code>/ladinos-debug/</code> are signed with LadinOS’s official GPG key. SAPT verifies these signatures by default to prevent tampered files.</li>
+            <li><strong>Bandwidth:</strong> GitHub Pages provides unlimited bandwidth for public repositories — there’s no risk of hitting usage limits for personal or small-team use.</li>
         </ul>
     </div>
 
-    <p>This LadinOS mirror service is supported by Cloudflare for global CDN delivery.</p>
+
+    <div class="section">
+        <h2>Troubleshooting</h2>
+        <ul>
+            <li><strong>"404 Not Found" Errors:</strong> Ensure the repository path in <code>sources.list</code> matches (e.g., <code>/ladinos/</code> — trailing slash required). Check that the GitHub Pages site is published (via your GitHub repo’s "Pages" settings).</li>
+            <li><strong>Slow Downloads:</strong> GitHub’s CDN automatically routes you to the nearest node — if speeds are slow, try again later (CDN routing may take a moment to optimize).</li>
+            <li><strong>SAPT Verification Errors:</strong> Re-import LadinOS’s GPG key with <code>sudo sapt import-key official</code> to fix signature verification issues.</li>
+        </ul>
+    </div>
+
+    <p>This LadinOS mirror is powered by <strong>GitHub Pages</strong> — no additional servers or CDN services are required. For questions, visit the LadinOS official forums or check the source’s GitHub repository.</p>
 </body>
 </html>
