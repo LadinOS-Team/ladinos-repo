@@ -1,7 +1,0 @@
-Archive: Ankang
-Version: 1.0
-Component: main
-Origin: LadinOS
-Label: LadinOS
-Architecture: amd64
-Description: LadinOS Public Repository (Based on Ubuntu 22.04 LTS)
