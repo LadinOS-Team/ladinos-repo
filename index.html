@@ -3,111 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LadinOS mirrors backed by GitHub</title>
+    <title>LadinOS mirrors - deb.saladin510-orangeyouhome-erath.online</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            line-height: 1.6;
-            color: #333;
+            font-family: "Arial", sans-serif;
+            max-width: 850px;
+            margin: 2.5rem auto;
+            padding: 0 1.2rem;
+            line-height: 1.7;
+            color: #2d3748;
+            background-color: #ffffff;
         }
         pre {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            border-radius: 4px;
+            background-color: #f7fafc;
+            border-radius: 6px;
+            padding: 1.2rem;
             overflow-x: auto;
+            border: 1px solid #edf2f7;
+            font-size: 0.95rem;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
+            margin: 1.8rem 0;
+            border: 1px solid #edf2f7;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 0.8rem;
+            padding: 1rem;
             text-align: left;
+            border-bottom: 1px solid #edf2f7;
         }
         th {
-            background-color: #f5f5f5;
+            background-color: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
         }
         .section {
-            margin: 2rem 0;
+            margin: 2.2rem 0;
         }
         h1, h2 {
-            color: #2c3e50;
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        code {
+            background-color: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+            color: #2d3748;
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        li {
+            margin: 0.5rem 0;
         }
     </style>
 </head>
 <body>
-    <h1>LadinOS mirrors backed by [CDN Provider]</h1>
+    <h1>LadinOS mirrors - deb.saladin510-orangeyouhome-erath.online</h1>
 
-    <p>This is <code>repo.ladinos.org</code>. This service provides mirrors for the following LadinOS archive repositories:</p>
+    <p>This is <code>http://deb.saladin510-orangeyouhome-erath.online</code>. This service provides official mirrors for the following LadinOS archive repositories, optimized for global access via CDN:</p>
     <ul>
-        <li><code>/ladinos/</code></li>
-        <li><code>/ladinos-debug/</code></li>
-        <li><code>/ladinos-experimental/</code></li>
+        <li><code>/ladinos/</code> (Main LadinOS repository)</li>
+        <li><code>/ladinos-debug/</code> (Debug symbol packages)</li>
+        <li><code>/ladinos-experimental/</code> (Experimental development packages)</li>
     </ul>
 
-    <p>The server <code>repo.ladinos.org</code> does not host packages directly, but the name has <strong>SRV records in DNS</strong> that allow <code>SAPT</code> (LadinOS’s official package manager) in LadinOS 1.0 and later to automatically discover optimal mirror locations.</p>
+    <p>The domain <code>deb.saladin510-orangeyouhome-erath.online</code> does not host packages directly. Instead, it uses **DNS SRV records** to let <code>SAPT</code> (LadinOS’s official package manager) — available in LadinOS 1.0 and later — automatically discover the nearest, fastest CDN mirror. This ensures optimal download speeds across different regions.</p>
 
 
     <div class="section">
-        <h2>Using with SAPT (via SRV records)</h2>
-        <p>To use this service with a sufficiently recent <code>SAPT</code>, add the following lines to your <code>sources.list</code> (typically located at <code>/etc/sapt/sources.list</code>):</p>
-        <pre>sapt repo http://repo.ladinos.org/ladinos stable main
-sapt repo http://repo.ladinos.org/ladinos-debug stable-debug main
-sapt repo http://repo.ladinos.org/ladinos-experimental unstable main</pre>
+        <h2>Using with SAPT (via SRV Records)</h2>
+        <p>For LadinOS 1.0+ (with SAPT supporting SRV records), add the following lines to your <code>sources.list</code> (default path: <code>/etc/sapt/sources.list</code>). This configuration auto-selects the best mirror:</p>
+        <pre>sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos stable main
+sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-debug stable-debug main
+sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-experimental unstable main</pre>
+        <p>After updating <code>sources.list</code>, refresh SAPT’s package index with: <code>sudo sapt update</code></p>
     </div>
 
 
     <div class="section">
         <h2>SRV Record Details</h2>
-        <p>As of <strong>2025-09-13</strong>, the DNS SRV record for <code>repo.ladinos.org</code> is:</p>
-        <pre>_http._tcp.repo.ladinos.org.    IN      SRV     10 1 80 cdn.ladinos.mirror.cdnprovider.net.</pre>
+        <p>As of <strong>2025-09-13</strong>, the DNS SRV record for <code>deb.saladin510-orangeyouhome-erath.online</code> is:</p>
+        <pre>_http._tcp.deb.saladin510-orangeyouhome-erath.online.    IN      SRV     10 1 80 cdn.ladinos.mirror.cdn-provider.net.</pre>
+        <p>This record tells SAPT to prioritize CDN endpoints (priority: 10, weight: 1) on port 80, ensuring reliable, fast connections.</p>
     </div>
 
 
     <div class="section">
-        <h2>Direct CDN Access (No Redirects)</h2>
-        <p>If you use an older <code>SAPT</code> version (that does not support SRV records) or a network environment with limited DNS functionality, requests to <code>repo.ladinos.org</code> will be <strong>HTTP redirected</strong> to CDN instances. To avoid redirects, use the CDN endpoint directly in <code>sources.list</code>:</p>
-        <pre>sapt repo http://cdn.ladinos.org/ladinos stable main
-sapt repo http://cdn.ladinos.org/ladinos-debug stable-debug main
-sapt repo http://cdn.ladinos.org/ladinos-experimental unstable main</pre>
+        <h2>Direct CDN Access (Avoid Redirects)</h2>
+        <p>If you use an older SAPT version (that does not support SRV records) or a network with restricted DNS functionality, requests to <code>deb.saladin510-orangeyouhome-erath.online</code> will be **HTTP 302 redirected** to a CDN instance. To skip redirects, use the CDN-aligned domain directly in <code>sources.list</code>:</p>
+        <pre>sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos stable main
+sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-debug stable-debug main
+sapt repo http://deb.saladin510-orangeyouhome-erath.online/ladinos-experimental unstable main</pre>
+        <p>This configuration works identically to the SRV-based setup but bypasses DNS record resolution for legacy environments.</p>
     </div>
 
 
     <div class="section">
-        <h2>Repository Types</h2>
+        <h2>Repository Type Overview</h2>
         <table>
             <thead>
                 <tr>
                     <th>Repository Path</th>
-                    <th>Description</th>
+                    <th>Target Users</th>
+                    <th>Stability</th>
                     <th>Security Updates</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><code>/ladinos/</code></td>
-                    <td>Stable packages for production use. Recommended for most users.</td>
-                    <td>✅ Regularly provided</td>
+                    <td>Most users, production systems</td>
+                    <td>✅ High (fully tested)</td>
+                    <td>✅ Weekly security patches</td>
                 </tr>
                 <tr>
                     <td><code>/ladinos-debug/</code></td>
-                    <td>Debug symbol packages for stable releases (for development/troubleshooting).</td>
-                    <td>✅ Aligned with stable</td>
+                    <td>Developers, troubleshooting</td>
+                    <td>✅ High (matches stable)</td>
+                    <td>✅ Aligned with <code>/ladinos/</code></td>
                 </tr>
                 <tr>
                     <td><code>/ladinos-experimental/</code></td>
-                    <td>Experimental packages (early features, unstable builds).</td>
-                    <td>❌ Not provided</td>
+                    <td>Developers, early testers</td>
+                    <td>❌ Low (unverified features)</td>
+                    <td>❌ No official security updates</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <p>This service is sponsored by GitHub.</p>
+
+    <div class="section">
+        <h2>Notes</h2>
+        <ul>
+            <li>All packages in <code>/ladinos/</code> and <code>/ladinos-debug/</code> are signed with LadinOS’s official GPG key. SAPT verifies signatures by default to prevent tampering.</li>
+            <li><code>/ladinos-experimental/</code> is for testing only — do not use it on critical systems, as it may break functionality or expose security risks.</li>
+            <li>If you encounter mirror issues, check LadinOS’s official forums or update SAPT to the latest version: <code>sudo sapt upgrade sapt</code></li>
+        </ul>
+    </div>
+
+    <p>This LadinOS mirror service is supported by Cloudflare for global CDN delivery.</p>
 </body>
 </html>
