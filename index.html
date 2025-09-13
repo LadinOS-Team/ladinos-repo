@@ -1,25 +1,113 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LadinOS 软件源</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LadinOS mirrors backed by GitHub</title>
     <style>
         body {
-            font-family: sans-serif;
-            margin: 20px;
-            max-width: 600px;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        .section {
+            margin: 2rem 0;
+        }
+        h1, h2 {
+            color: #2c3e50;
         }
     </style>
 </head>
 <body>
-    <h1>LadinOS 软件源说明</h1>
-    <p>这是 LadinOS 的软件源，此网页上除文字外无其他可直接用浏览器访问的内容。</p>
-    <p>我们为以下版本提供软件源服务：</p>
+    <h1>LadinOS mirrors backed by [CDN Provider]</h1>
+
+    <p>This is <code>repo.ladinos.org</code>. This service provides mirrors for the following LadinOS archive repositories:</p>
     <ul>
-        <li><strong>稳定版</strong>：经过充分测试，确保系统稳定可靠，会提供安全更新。</li>
-        <li><strong>不稳定版</strong>：包含较新功能但未完全验证，仍会接收安全更新。</li>
-        <li><strong>极不稳定版</strong>：为最新开发成果，可能存在较多问题，<strong>不提供安全更新</strong>。</li>
+        <li><code>/ladinos/</code></li>
+        <li><code>/ladinos-debug/</code></li>
+        <li><code>/ladinos-experimental/</code></li>
     </ul>
-    <p>请通过 LadinOS 系统的包管理工具（如 sapt）访问和使用软件源。</p>
+
+    <p>The server <code>repo.ladinos.org</code> does not host packages directly, but the name has <strong>SRV records in DNS</strong> that allow <code>SAPT</code> (LadinOS’s official package manager) in LadinOS 1.0 and later to automatically discover optimal mirror locations.</p>
+
+
+    <div class="section">
+        <h2>Using with SAPT (via SRV records)</h2>
+        <p>To use this service with a sufficiently recent <code>SAPT</code>, add the following lines to your <code>sources.list</code> (typically located at <code>/etc/sapt/sources.list</code>):</p>
+        <pre>sapt repo http://repo.ladinos.org/ladinos stable main
+sapt repo http://repo.ladinos.org/ladinos-debug stable-debug main
+sapt repo http://repo.ladinos.org/ladinos-experimental unstable main</pre>
+    </div>
+
+
+    <div class="section">
+        <h2>SRV Record Details</h2>
+        <p>As of <strong>2025-09-13</strong>, the DNS SRV record for <code>repo.ladinos.org</code> is:</p>
+        <pre>_http._tcp.repo.ladinos.org.    IN      SRV     10 1 80 cdn.ladinos.mirror.cdnprovider.net.</pre>
+    </div>
+
+
+    <div class="section">
+        <h2>Direct CDN Access (No Redirects)</h2>
+        <p>If you use an older <code>SAPT</code> version (that does not support SRV records) or a network environment with limited DNS functionality, requests to <code>repo.ladinos.org</code> will be <strong>HTTP redirected</strong> to CDN instances. To avoid redirects, use the CDN endpoint directly in <code>sources.list</code>:</p>
+        <pre>sapt repo http://cdn.ladinos.org/ladinos stable main
+sapt repo http://cdn.ladinos.org/ladinos-debug stable-debug main
+sapt repo http://cdn.ladinos.org/ladinos-experimental unstable main</pre>
+    </div>
+
+
+    <div class="section">
+        <h2>Repository Types</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Repository Path</th>
+                    <th>Description</th>
+                    <th>Security Updates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>/ladinos/</code></td>
+                    <td>Stable packages for production use. Recommended for most users.</td>
+                    <td>✅ Regularly provided</td>
+                </tr>
+                <tr>
+                    <td><code>/ladinos-debug/</code></td>
+                    <td>Debug symbol packages for stable releases (for development/troubleshooting).</td>
+                    <td>✅ Aligned with stable</td>
+                </tr>
+                <tr>
+                    <td><code>/ladinos-experimental/</code></td>
+                    <td>Experimental packages (early features, unstable builds).</td>
+                    <td>❌ Not provided</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>This service is sponsored by GitHub.</p>
 </body>
 </html>
