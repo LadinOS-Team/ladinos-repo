@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LadinOS 软件源</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 24px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        .version-group {
+            margin-bottom: 24px;
+        }
+        .version {
+            padding: 16px;
+            border-radius: 4px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        .version h2 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        .caution {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LadinOS 软件源说明</h1>
+    </header>
+    <main>
+        <p>本页面为 LadinOS 官方软件源的介绍页。由于软件源的内容为软件包索引及二进制文件，<strong>无法通过浏览器直接浏览或下载</strong>，请通过 LadinOS 系统的包管理工具（如 <code>sapt</code>）进行访问和使用。</p>
+
+        <div class="version-group">
+            <div class="version">
+                <h2>稳定版 (Stable)</h2>
+                <p>稳定版软件源包含经过严格测试的软件包，确保系统运行的稳定性与可靠性。该版本会定期推送安全更新和经过验证的功能更新，是大多数用户的首选。</p>
+            </div>
+
+            <div class="version">
+                <h2>不稳定版 (Unstable)</h2>
+                <p>不稳定版软件源包含较新的开发版本，可能包含未完全验证的功能或修复。适合希望体验前沿特性，但能接受一定程度不稳定性的用户。此版本会接收频繁的更新（包括安全更新）。</p>
+            </div>
+
+            <div class="version">
+                <h2>极不稳定版 (Extremely Unstable)</h2>
+                <p>极不稳定版软件源包含最新的开发分支代码，可能存在较多 Bug、功能未完成或兼容性问题。主要面向开发者或资深极客，用于测试最新开发成果。</p>
+                <div class="caution">
+                    <strong>重要提示：</strong> 极不稳定版<strong>不提供官方安全更新</strong>，使用此版本可能导致系统安全性降低、功能异常甚至无法正常运行，请谨慎选择。
+                </div>
+            </div>
+        </div>
+
+        <p>如需配置软件源，请参考 LadinOS 官方文档，根据您的使用场景选择对应的源地址进行设置。</p>
+    </main>
+</body>
+</html>
